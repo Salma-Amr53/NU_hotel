@@ -1,1 +1,7 @@
+CREATE TABLE room_types (
+    type_id INT AUTO_INCREMENT PRIMARY KEY,
+    type_name ENUM('Single', 'Double') NOT NULL,
+    base_price DECIMAL(1000, 1800),
+    Cozy rooms for solo travelers or small groups. Our Single Rooms are perfect for one guest, while Double Rooms suit couples or families. All rooms include Wi-Fi, a TV, air conditioning, and a private bathroom with toiletries for a comfortable stay
+);
 
