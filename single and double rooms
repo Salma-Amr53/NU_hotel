@@ -1,7 +1,23 @@
-CREATE TABLE room_types (
-    type_id INT AUTO_INCREMENT PRIMARY KEY,
-    type_name ENUM('Single', 'Double') NOT NULL,
-    base_price DECIMAL(1000, 1800),
-    Cozy rooms for solo travelers or small groups. Our Single Rooms are perfect for one guest, while Double Rooms suit couples or families. All rooms include Wi-Fi, a TV, air conditioning, and a private bathroom with toiletries for a comfortable stay
-);
+INSERT INTO rooms (room_number, room_type, capacity, price_per_night, availability_status, description)
+VALUES
+('101', 'Single', 1, 500.00, 'available', 'Cozy single room with a single bed and private bathroom.'),
+('102', 'Double', 2, 800.00, 'occupied', 'Spacious double room with a queen-size bed, ideal for couples.'),
+('103', 'Single', 1, 550.00, 'maintenance', 'Modern single room with a comfortable single bed and a desk.'),
+('104', 'Double', 2, 850.00, 'available', 'Elegant double room with two twin beds and a balcony.');
+
+
+INSERT INTO bookings (room_id, customer_id, check_in_date, check_out_date, total_price, booking_status)
+VALUES
+(1, 1, '2024-12-25', '2024-12-27', 1000.00, 'confirmed'),
+(2, 2, '2024-12-20', '2024-12-22', 1600.00, 'checked-in'),
+(4, 3, '2024-12-28', '2024-12-30', 1700.00, 'confirmed');
+
+
+INSERT INTO room_types (type_name, base_price, description)
+VALUES
+('Single', 500.00, 'Single rooms are ideal for solo travelers, offering comfort and privacy.'),
+('Double', 800.00, 'Double rooms are spacious and great for couples or families.');
+
+
+
 
