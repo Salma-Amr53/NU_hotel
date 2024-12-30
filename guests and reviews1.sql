@@ -1,14 +1,12 @@
 CREATE DATABASE hotel;
 USE hotel;
 CREATE TABLE Guests (
-    GuestID INT PRIMARY KEY AUTO_INCREMENT,
+    NationalID INT PRIMARY KEY,
     FirstName VARCHAR(50) NOT NULL,
     LastName VARCHAR(50) NOT NULL,
     Email VARCHAR(100) UNIQUE NOT NULL,
     PhoneNumber VARCHAR(15),
-    Address TEXT,
-    CheckInDate DATE NOT NULL,
-    CheckOutDate DATE
+    CheckInDate DATE NOT NULL
 );
 
 CREATE TABLE HotelReviews (
