@@ -1,5 +1,5 @@
-CREATE DATABASE hotel;
-USE hotel;
+CREATE DATABASE hotel_management;
+USE hotel_management;
 CREATE TABLE Guests (
     NationalID INT PRIMARY KEY,
     FirstName VARCHAR(50) NOT NULL,
