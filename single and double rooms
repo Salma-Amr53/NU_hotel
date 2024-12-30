@@ -1,30 +1,25 @@
--- Create the `room_types` table
 CREATE TABLE room_types (
-    type_name VARCHAR(50) PRIMARY KEY,     -- Room type name (e.g., Single, Double)
-    base_price DECIMAL(10, 2) NOT NULL,   -- Base price for the room type
-    description TEXT                      -- Description of the room type
+    type_name VARCHAR(50) PRIMARY KEY,
+    base_price DECIMAL(10, 2) NOT NULL,
+    description TEXT
 );
 
--- Insert data into `room_types`
 INSERT INTO room_types (type_name, base_price, description)
 VALUES
 ('Single', 500.00, 'Single rooms are ideal for solo travelers, offering comfort and privacy.'),
 ('Double', 800.00, 'Double rooms are spacious and great for couples or families.');
 
--- Create the `rooms` table
 CREATE TABLE rooms (
-    room_id SERIAL PRIMARY KEY,           -- Auto-incrementing primary key
-    room_number VARCHAR(10) UNIQUE NOT NULL, -- Unique room number
-    room_type VARCHAR(50) NOT NULL,       -- Room type (e.g., Single, Double)
-    capacity INT NOT NULL,                -- Maximum capacity of the room
-    price_per_night DECIMAL(500, 800) NOT NULL, -- Price per night for the room
-    availability_status VARCHAR(20) CHECK (availability_status IN ('available', 'occupied', 'maintenance')), 
-                                            -- Room availability status
-    description TEXT,                     -- Description of the room
-    FOREIGN KEY (room_type) REFERENCES room_types(type_name) -- Reference to room_types
+    room_id SERIAL PRIMARY KEY,
+    room_number VARCHAR(10) UNIQUE NOT NULL,
+    room_type VARCHAR(50) NOT NULL,
+    capacity INT NOT NULL,
+    price_per_night DECIMAL(10, 2) NOT NULL,
+    availability_status VARCHAR(20) CHECK (availability_status IN ('available', 'occupied', 'maintenance')),
+    description TEXT,
+    FOREIGN KEY (room_type) REFERENCES room_types(type_name)
 );
 
--- Insert data into `rooms`
 INSERT INTO rooms (room_number, room_type, capacity, price_per_night, availability_status, description)
 VALUES
 ('101', 'Single', 1, 500.00, 'available', 'Cozy single room with a single bed and private bathroom.'),
@@ -32,38 +27,17 @@ VALUES
 ('103', 'Single', 1, 550.00, 'maintenance', 'Modern single room with a comfortable single bed and a desk.'),
 ('104', 'Double', 2, 850.00, 'available', 'Elegant double room with two twin beds and a balcony.');
 
--- Create the `customers` table
-CREATE TABLE customers (
-    customer_id SERIAL PRIMARY KEY,        -- Auto-incrementing primary key
-    first_name VARCHAR(50) NOT NULL,      -- First name of the customer
-    last_name VARCHAR(50) NOT NULL,       -- Last name of the customer
-    email VARCHAR(100) UNIQUE NOT NULL,   -- Unique email address for the customer
-    phone_number VARCHAR(15),             -- Phone number (optional)
-    address TEXT                          -- Address of the customer
-);
-
--- Insert data into `customers`
-INSERT INTO customers (first_name, last_name, email, phone_number, address)
-VALUES
-('John', 'Doe', 'john.doe@example.com', '1234567890', '123 Elm Street, Springfield'),
-('Jane', 'Smith', 'jane.smith@example.com', '0987654321', '456 Oak Avenue, Metropolis'),
-('Alice', 'Brown', 'alice.brown@example.com', '1122334455', '789 Pine Road, Gotham');
-
--- Create the `bookings` table
 CREATE TABLE bookings (
-    booking_id SERIAL PRIMARY KEY,        -- Auto-incrementing primary key
-    room_id INT NOT NULL,                 -- Foreign key to rooms table
-    customer_id INT NOT NULL,             -- Foreign key to customers table
-    check_in_date DATE NOT NULL,          -- Check-in date for the booking
-    check_out_date DATE NOT NULL,         -- Check-out date for the booking
-    total_price DECIMAL(10, 2) NOT NULL,  -- Total price for the stay
-    booking_status VARCHAR(20) CHECK (booking_status IN ('confirmed', 'checked-in', 'cancelled')), 
-                                            -- Booking status
-    FOREIGN KEY (room_id) REFERENCES rooms(room_id),
-    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+    booking_id SERIAL PRIMARY KEY,
+    room_id INT NOT NULL,
+    customer_id INT NOT NULL,
+    check_in_date DATE NOT NULL,
+    check_out_date DATE NOT NULL,
+    total_price DECIMAL(10, 2) NOT NULL,
+    booking_status VARCHAR(20) CHECK (booking_status IN ('confirmed', 'checked-in', 'cancelled')),
+    FOREIGN KEY (room_id) REFERENCES rooms(room_id)
 );
 
--- Insert data into `bookings`
 INSERT INTO bookings (room_id, customer_id, check_in_date, check_out_date, total_price, booking_status)
 VALUES
 (1, 1, '2024-12-25', '2024-12-27', 1000.00, 'confirmed'),
