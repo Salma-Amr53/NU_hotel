@@ -8,6 +8,7 @@ CREATE TABLE suites (
     PricePerNight DECIMAL(10, 2) NOT NULL,
     AvailabilityStatus VARCHAR(50) DEFAULT 'Available',
     ViewType VARCHAR(100)
+    FOREIGN KEY (NationalID) REFERENCES Guests(NationalID)
 );
 
 CREATE TABLE Restaurants (
@@ -24,4 +25,5 @@ CREATE TABLE Restaurants (
     IndoorOutdoorSeating VARCHAR(50),
     Status VARCHAR(50) DEFAULT 'Open',
     Services TEXT
+    FOREIGN KEY (NationalID) REFERENCES Guests(NationalID)
 );
