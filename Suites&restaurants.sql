@@ -7,11 +7,8 @@ CREATE TABLE suites (
     Capacity INT,
     PricePerNight DECIMAL(10, 2) NOT NULL,
     AvailabilityStatus VARCHAR(50) DEFAULT 'Available',
-    ViewType VARCHAR(100), 
+    ViewType VARCHAR(100)
 );
-
-
-
 
 CREATE TABLE Restaurants (
     Restaurant_ID INT PRIMARY KEY AUTO_INCREMENT,
