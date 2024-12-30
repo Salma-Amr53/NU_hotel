@@ -11,10 +11,10 @@ CREATE TABLE Guests (
 
 CREATE TABLE HotelReviews (
     ReviewID INT PRIMARY KEY AUTO_INCREMENT,
-    GuestID INT NOT NULL,
+    NationalID INT NOT NULL,
     ReviewDate DATE NOT NULL,
     Rating INT CHECK (Rating BETWEEN 1 AND 5),
     Comments TEXT,
-    FOREIGN KEY (GuestID) REFERENCES Guests(GuestID) ON DELETE CASCADE
+    FOREIGN KEY (NationalID) REFERENCES Guests(NationalID) ON DELETE CASCADE
 );
 
